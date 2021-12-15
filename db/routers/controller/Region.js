@@ -1,5 +1,7 @@
  const req = require("express/lib/request");
 const RegionModel = require("../../module/Region");
+// const post
+// const { post } = require("../route/RouteRegion ");
 
  const getRegion = async (req, res) => {
    const userId = req.token.userId
@@ -36,4 +38,23 @@ const deletRegion = async (req,res)=>{
   }
 };
 
- module.exports = { getRegion, addRegion, deletRegion };
+const  updateRegion= async (req,res)=>{
+  const {name} = req.body
+  const {description} = req.body
+  const {img} = req.body
+  const id = req.params.id
+  try {
+    const updatePost =await RegionModel.findOneAndUpdate({_id :id},{
+      name:name,
+      description:description,
+      img :img,
+    },{new:true});
+    // const allPosts=await RegionModel.find({})
+      res.status(201).json(updatePost);
+    
+  } catch (error) {
+    res.send({message:error})
+  }
+}
+
+ module.exports = { getRegion, addRegion, deletRegion ,updateRegion};
