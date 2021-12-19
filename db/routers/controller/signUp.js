@@ -9,13 +9,14 @@ const SignUp = async (req, res) => {
       name,
       email,
       password,
-
-      isAdmin: false,
+      LikeRegion: [],
+      Admin: false,
     });
     const respons = await newUser.save();
     res.status(201).json(respons);
   } catch (error) {
     res.send(error);
+    console.log(respons);
   }
 };
 
