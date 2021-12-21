@@ -2,13 +2,14 @@ const user = require("../../module/user");
 const bcrypt = require("bcrypt");
 
 const SignUp = async (req, res) => {
-  let { name, email, password } = req.body;
+  let { name, email, password ,password2 } = req.body;
   try {
     password = await bcrypt.hash(password, 10);
     const newUser = await new user({
       name,
       email,
       password,
+      password2,
       LikeRegion: [],
       Admin: false,
     });

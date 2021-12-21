@@ -21,7 +21,7 @@ const AddLike = async (req, res) => {
     const newlike = await userModel.findOneAndUpdate(
       { _id: user },
       { $push: { LikeRegion: id } },
-      { new: true }
+    //
     );
     res.status(201).json(newlike);
     console.log(newlike);
@@ -37,7 +37,7 @@ const deletelike = async (req, res) => {
      const newlike = await userModel.findOneAndUpdate(
        { _id: user },
        { $pull: { LikeRegion: id } },
-        // { new: true }
+     
      );
      res.status(201).json(newlike);
    } catch (error) {

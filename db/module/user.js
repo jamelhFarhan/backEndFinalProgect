@@ -4,7 +4,8 @@ const userModel = new mongoose.Schema({
   name: { type: String },
   email: { type: String, unique: true },
   password: { type: String },
-      Admin:{ type: Boolean , required :true},
+  password2: { type: String },
+      Admin:{ type: Boolean , default:false},
     LikeRegion: [{ type: mongoose.Schema.Types.ObjectId, ref: "RegionModel" }],
 });
 

@@ -1,15 +1,32 @@
 const req = require("express/lib/request");
+const res = require("express/lib/response");
 const RegionModel = require("../../module/Region");
-
+const userModel = require("../../module/user");
+/////////////////
 const getRegion = async (req, res) => {
   const userId = req.token.userId;
   try {
     const Region = await RegionModel.find({});
+    console.log(userId);
     res.status(200).json(Region);
   } catch (error) {
     res.send(error);
   }
 };
+//////////////////////
+const getUsers = async (req, res) => {
+  const userId = req.token.userId;
+  console.log(userId);
+  try {
+    const users = await userModel.findOne({ _id: userId });
+    console.log(users);
+    res.status(200).json(users);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+//////////////////////
 
 const addRegion = async (req, res) => {
   const { name, description, img } = req.body;
@@ -60,4 +77,4 @@ const updateRegion = async (req, res) => {
   }
 };
 
-module.exports = { getRegion, addRegion, deletRegion, updateRegion };
+module.exports = { getRegion, addRegion, deletRegion, updateRegion, getUsers };
