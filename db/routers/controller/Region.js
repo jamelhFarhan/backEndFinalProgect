@@ -70,7 +70,7 @@ const updateRegion = async (req, res) => {
       },
       { new: true }
     );
-    // const allPosts=await RegionModel.find({})
+ 
     res.status(201).json(updatePost);
   } catch (error) {
     res.send({ message: error });
