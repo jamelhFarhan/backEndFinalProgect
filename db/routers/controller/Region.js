@@ -34,9 +34,9 @@ const addRegion = async (req, res) => {
   const newRegion = new RegionModel({ name, description, img });
   try {
     const addNwRegion = await newRegion.save();
-    const Region = await RegionModel.find({});
+    //  const Region = await RegionModel.find({});
 
-    res.status(201).json(Region);
+    res.status(201).json(addNwRegion);
   } catch (error) {
     res.send(error);
   }
