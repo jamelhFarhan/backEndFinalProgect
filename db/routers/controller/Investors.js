@@ -24,7 +24,8 @@ const addInvestors = async (req, res) => {
     const addInv = await newInvestors.save();
     res.status(201).json(addInv);
   } catch (error) {
-    res.send({ maeesage: error });
+    res.send({ maeesage: "error",
+    error });
   }
 };
 //////////

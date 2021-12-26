@@ -5,6 +5,7 @@ const InvestorsModel = new mongoose.Schema({
   phoneNumber: { type: Number },
   price: { type: String},
   user:{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}
-});
+},
+{timestamps:true});
 
 module.exports = mongoose.model("InvestorsModel", InvestorsModel);
