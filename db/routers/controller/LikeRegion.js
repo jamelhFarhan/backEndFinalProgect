@@ -1,3 +1,4 @@
+const { populate } = require("../../module/user");
 const userModel = require("../../module/user");
 
 const getLike = async (req, res) => {
@@ -16,18 +17,32 @@ const getLike = async (req, res) => {
 
 const AddLike = async (req, res) => {
   const id = req.params.id;
-  const user = req.token.userId;
+  const userId = req.token.userId;
   try {
-    const newlike = await userModel.findOneAndUpdate(
-      { _id: user },
+    const user =  await userModel.findOne({_id:userId}).populate("LikeRegion");
+    const likeChick =user.LikeRegion.filter((element)=>{
+      return element._id == id;
+    });
+    if (likeChick.length){
+      const  newLikee= await userModel.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { LikeRegion: id } },
+      {new:true} 
+      ).populate("LikeRegion");
+      res.status(201).json(newLikee);
+    }else{
+    const newLikee= await userModel.findOneAndUpdate(
+      { _id: userId },
       { $push: { LikeRegion: id } },
-    {new:true}
-    );
-    res.status(201).json(newlike);
-    console.log(newlike);
-  } catch (error) {
-    res.send({ massege: "errror " });
-  }
+      {new:true} 
+    ).populate("LikeRegion");
+    res.status(201).json(newLikee);
+    }
+  
+ 
+   } catch (error) {
+     res.send({ massege: "errror " });
+   }
 };
 
 const deletelike = async (req, res) => {

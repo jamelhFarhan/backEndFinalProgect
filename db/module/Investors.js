@@ -4,6 +4,7 @@ const InvestorsModel = new mongoose.Schema({
   email: { type: String },
   phoneNumber: { type: Number },
   price: { type: String},
+  month: {type: String},
   user:{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}
 },
 {timestamps:true});
