@@ -1,5 +1,5 @@
-const InvestorsModel = require("../../module/Investors");
-const userModel = require("../../module/user");
+const InvestorsModel = require("../../db/module/Investors");
+const userModel = require("../../db/module/user");
 
 const getInvestor = async (req, res) => {
   const userId = req.token.userId;
@@ -13,13 +13,14 @@ const getInvestor = async (req, res) => {
 };
 /////////////////////////////////
 const addInvestors = async (req, res) => {
-  const { name, email, phoneNumber, price } = req.body;
+  const { name, email, phoneNumber, price} = req.body;
   const user = req.token.userId;
   const newInvestors = new InvestorsModel({
     name,
     email,
     phoneNumber,
     price,
+
     user,
   });
   try {
@@ -70,18 +71,14 @@ const getDamin = async (req, res) => {
 /////////////////////////////
 
 const updateInvestors = async (req, res) => {
-  const { name } = req.body;
-  const { email } = req.body;
-  const { phoneNumber } = req.body;
+ 
   const { price } = req.body;
   const id = req.params.id;
   try {
     const updetInv = await InvestorsModel.findOneAndUpdate(
       { _id: id },
       {
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
+     
         price: price,
       },
       { new: true }

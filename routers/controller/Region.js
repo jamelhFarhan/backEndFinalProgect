@@ -1,10 +1,11 @@
 const req = require("express/lib/request");
 const res = require("express/lib/response");
-const RegionModel = require("../../module/Region");
-const userModel = require("../../module/user");
+const RegionModel = require("../../db/module/Region");
+const userModel = require("../../db/module/user");
 /////////////////
 const getRegion = async (req, res) => {
   const userId = req.token.userId;
+  console.log(req);
   try {
     const Region = await RegionModel.find({});
     console.log(userId);

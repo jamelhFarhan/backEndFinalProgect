@@ -5,6 +5,7 @@ const InvestorsModel = new mongoose.Schema({
   phoneNumber: { type: Number },
   price: { type: String},
   month: {type: String},
+  Status:{type: String},
   user:{type: mongoose.Schema.Types.ObjectId, ref:"userModel"}
 },
 {timestamps:true});

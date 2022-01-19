@@ -1,4 +1,4 @@
-const user = require("../../module/user");
+const user = require("../../db/module/user");
 const bcrypt = require("bcrypt");
 
 const SignUp = async (req, res) => {
@@ -17,8 +17,8 @@ return
 res.status(400).json({msg:" name must be at least 3 characters"})
 return
   }
-  if (Identity.length <10){
-    res.status(400).json({msg:" Identity must be at < 10 "})
+  if (Identity.length <4){
+    res.status(400).json({msg:" Identity must be at < 10"})
     return
   }
     password = await bcrypt.hash(password, 10);

@@ -1,5 +1,5 @@
-const { populate } = require("../../module/user");
-const userModel = require("../../module/user");
+const { populate } = require("../../db/module/Region");
+const userModel = require("../../db/module/user");
 
 const getLike = async (req, res) => {
   const user = req.token.userId;
@@ -13,9 +13,20 @@ const getLike = async (req, res) => {
   } catch (error) {
     res.send(error);
   }
+ 
+
+
+
+
+
+
+
 };
 
 const AddLike = async (req, res) => {
+
+
+
   const id = req.params.id;
   const userId = req.token.userId;
   try {
@@ -34,7 +45,7 @@ const AddLike = async (req, res) => {
     const newLikee= await userModel.findOneAndUpdate(
       { _id: userId },
       { $push: { LikeRegion: id } },
-      {new:true} 
+      {new:true}     
     ).populate("LikeRegion");
     res.status(201).json(newLikee);
     }
