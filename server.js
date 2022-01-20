@@ -19,7 +19,8 @@ app.use(cors());
    app.use(RouteInvestors);
     app.use(RouteLikeRegion);
   ////////////////////////
-const Port = 5000;
-app.listen(Port, () => {
+
+console.log(process.env.PORT) 
+app.listen(process.env.PORT, () => {
   console.log("server runing on 5000 port");
 });
